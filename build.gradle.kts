@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("io.arrow-kt:arrow-core:1.1.2")
     testImplementation(kotlin("test"))
     testImplementation("org.assertj:assertj-core:3.23.1")
 }

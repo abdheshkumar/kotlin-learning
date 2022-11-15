@@ -1,4 +1,6 @@
-package basic.fp
+package fp
+
+import basic.fp.Fun
 
 object Memoization {
 

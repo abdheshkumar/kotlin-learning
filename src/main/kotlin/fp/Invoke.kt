@@ -1,4 +1,4 @@
-package basic.fp
+package fp
 
 object Invoke {
     operator fun invoke(a: Int) {

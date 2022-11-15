@@ -1,4 +1,5 @@
-package basic.fp
+package fp
+
 import kotlin.reflect.KProperty
 
 object Laziness {
