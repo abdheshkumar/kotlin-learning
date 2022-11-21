@@ -1,6 +1,6 @@
 package com.abtech
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.* // ktlint-disable no-wildcard-imports
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -201,9 +201,9 @@ class CoroutineLaunch {
             }
         }
     }
-    
+
     suspend fun testCancelPropagation1() {
-        coroutineScope{
+        coroutineScope {
             val job = launch(CoroutineName("parent")) {
                 println("starting parent")
 
