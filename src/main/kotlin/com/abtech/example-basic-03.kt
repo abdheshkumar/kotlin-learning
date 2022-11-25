@@ -3,15 +3,21 @@ package com.abtech // ktlint-disable filename
 import kotlinx.coroutines.* // ktlint-disable no-wildcard-imports
 
 fun main() = run {
-    suspend fun doWorld() = coroutineScope { // this: CoroutineScope
-        launch {
-            delay(1000L)
-            println("World!")
+    suspend fun doWorldV(cs: CoroutineScope) = coroutineScope { // this: CoroutineScope
+        cs.launch {
+            delay(500)
+            println("Background processing!")
+            delay(500)
+            println("Background processing finished!")
         }
-        println("Hello")
+        println("Doing something")
     }
 
     runBlocking {
-        doWorld()
+        println("Calling for background processing")
+        doWorldV(this)
+        println("Calling for background processing triggered")
+        delay(2000)
+        println("Application stopped")
     }
 }
