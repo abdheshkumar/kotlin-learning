@@ -18,6 +18,7 @@ object LaunchApp {
             .tap { println("Calling APIs....") }
             .tap {
                 cs.launch(Dispatchers.IO) {
+                    println("Launch on ${Thread.currentThread().name}")
                     produceKafkaAsync()
                 }
             }
