@@ -50,6 +50,16 @@ object WhenApp {
         else -> println("Somewhere in space at x = $x, y = $y, z =$z")
     }
 
+    private fun buildList(): List<String> = emptyList()
+    private fun useWhenAsIfElse() {
+        val st = System.getProperties()["my-env"]
+        val list: List<String> = buildList()
+        when {
+            st == "test" -> println("Null object")
+            list.isEmpty() -> println("Empty list")
+        }
+    }
+
     @JvmStatic
     fun main(args: Array<String>) {
         (`10`)
@@ -59,5 +69,6 @@ object WhenApp {
         println(timeOfDayV1(hourOfDay))
         isEven(2)
         xyz(0, 0, 0)
+        useWhenAsIfElse()
     }
 }

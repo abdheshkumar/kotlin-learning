@@ -29,7 +29,7 @@ object FunctionsApp {
         return a + b
     }
 
-    fun printResult(function: (Int, Int) -> Int, a: Int, b: Int) {
+    private fun printResult(function: (Int, Int) -> Int, a: Int, b: Int) {
         val result = function(a, b)
         print(result)
     }
@@ -60,12 +60,12 @@ object FunctionsApp {
         println(
             withV1("hello") {
                 lowercase(Locale.getDefault())
-            }
+            },
         )
         println(
             "hello".withV2 {
                 lowercase(Locale.getDefault())
-            }
+            },
         )
         "hello".apply { }
 

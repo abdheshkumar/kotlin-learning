@@ -15,7 +15,6 @@ object CallBackToCoroutine {
         kafka.send("hello") { metadata, exception ->
             if (exception == null) complete(metadata)
             else completeExceptionally(exception)
-            println(exception)
         }
     }
 
@@ -23,40 +22,38 @@ object CallBackToCoroutine {
         kafka.send("hello") { metadata, exception ->
             if (exception == null) continuation.resume(metadata)
             else continuation.resumeWithException(exception)
-            println(exception)
         }
     }
+
+    private suspend fun publishVV(): Result<RecordMetadata> = suspendCoroutine { continuation ->
+        kafka.send("hello") { metadata, exception ->
+            if (exception == null) continuation.resume(Result.success(metadata))
+            else continuation.resume(Result.failure(exception))
+        }
+    }
+
     private suspend fun cancellableTask(): List<String> {
         return suspendCancellableCoroutine { continuation ->
             continuation.invokeOnCancellation { print("Cancelled…") }
-            Thread.sleep(150)
+            Thread.sleep(150) // Pretend some work doing here
             continuation.resume(emptyList())
         }
     }
 
     @JvmStatic
     fun main(args: Array<String>): Unit = runBlocking {
-        // val res: RecordMetadata = publish().await()
-        // val res1: RecordMetadata = publishV()
         launch {
             print("1 ")
             print("2 ")
             print("3 ")
-            suspendCoroutine<Unit> {
+            val result = suspendCoroutine<String> {
                 print("....")
-                it.resume(Unit)
+                "test"
             }
+            println(result)
             print("4 ")
             println("Done!")
         }
-
-        val job = launch(Dispatchers.IO) {
-            val tasks = cancellableTask()
-            println(tasks)
-        }
-
-        delay(100)
-        job.cancel()
     }
 }
 

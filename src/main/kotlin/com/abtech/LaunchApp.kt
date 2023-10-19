@@ -57,10 +57,12 @@ object LaunchApp {
 
     @JvmStatic
     fun main(args: Array<String>): Unit = runBlocking {
+        // https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/common/src/CoroutineDispatcher.kt
+        // https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/src/Dispatchers.kt
         // apiV()
         // apiVV()
-        // withLog { apiV(this) }
-        withLog { apiVV() }
+        withLog { apiV(this) }
+        // withLog { apiVV() }
         delay(5000)
         log("Done")
     }
