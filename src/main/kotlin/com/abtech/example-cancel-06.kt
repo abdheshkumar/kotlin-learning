@@ -11,9 +11,7 @@ fun main() = runBlocking {
             }
         } finally {
             withContext(NonCancellable) {
-                println("job: I'm running finally")
-                delay(1000L)
-                println("job: And I've just delayed for 1 sec because I'm non-cancellable")
+                cleanupJob()
             }
         }
     }
@@ -21,4 +19,10 @@ fun main() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // cancels the job and waits for its completion
     println("main: Now I can quit.")
+}
+
+private suspend fun cleanupJob() {
+    println("job: I'm running finally")
+    delay(1000L)
+    println("job: And I've just delayed for 1 sec because I'm non-cancellable")
 }

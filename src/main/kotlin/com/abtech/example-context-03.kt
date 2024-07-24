@@ -9,7 +9,7 @@ fun main() = run {
             log("I'm computing a piece of the answer")
             6
         }
-        val b = async {
+        val b = async(Dispatchers.IO) {
             log("I'm computing another piece of the answer")
             7
         }

@@ -9,14 +9,18 @@ object Composition {
     }
 
     private fun double(x: Int): Int = x * 2
-    private fun square(x: Int): Int = x * x
-    private infix fun <A, B, C> ((A) -> B).compose(g: (B) -> C): (A) -> C = { a ->
-        g(this(a))
-    }
 
-    private inline infix fun <A, B, C> Fun<A, B>.after(crossinline g: Fun<B, C>): Fun<A, C> = { a ->
-        g(this(a))
-    }
+    private fun square(x: Int): Int = x * x
+
+    private infix fun <A, B, C> ((A) -> B).compose(g: (B) -> C): (A) -> C =
+        { a ->
+            g(this(a))
+        }
+
+    private inline infix fun <A, B, C> Fun<A, B>.after(crossinline g: Fun<B, C>): Fun<A, C> =
+        { a ->
+            g(this(a))
+        }
 
     @JvmStatic
     fun main(args: Array<String>) {
