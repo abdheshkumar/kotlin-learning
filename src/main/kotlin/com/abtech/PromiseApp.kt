@@ -2,9 +2,7 @@ package com.abtech
 
 import arrow.core.Either
 import arrow.core.flatMap
-import arrow.core.handleError
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.flow.combine
 import java.util.*
 
 object PromiseApp {
@@ -54,7 +52,7 @@ object PromiseApp {
         val c = CompletableDeferred<Unit>()
         f1(c)
         println("Finished")*/
-        config().handleError {
+        config().onLeft {
             when (it) {
                 is InvalidPort -> TODO()
                 PortNotAvailable -> TODO()

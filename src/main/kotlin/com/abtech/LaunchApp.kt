@@ -16,14 +16,14 @@ object LaunchApp {
 
     private suspend fun api(cs: CoroutineScope): Either<Throwable, Int> = coroutineScope {
         Either.catch { 12 }
-            .tap { log("Calling APIs....") }
-            .tap {
+            .onRight { log("Calling APIs....") }
+            .onRight {
                 cs.launch(Dispatchers.IO) {
                     log("Start producing message")
                     produceKafkaAsync()
                 }
             }
-            .tap { log("Return API response to caller..") }
+            .onRight { log("Return API response to caller..") }
     }
 
     private suspend fun withLog(block: suspend () -> Unit) {
@@ -33,8 +33,8 @@ object LaunchApp {
 
     private suspend fun apiVV(): Either<Throwable, Int> {
         return Either.catch { 12 }
-            .tap { log("Calling APIs....") }
-            .tap {
+            .onRight { log("Calling APIs....") }
+            .onRight {
                 coroutineScope {
                     launch {
                         log("Start producing message")
@@ -42,7 +42,7 @@ object LaunchApp {
                     }
                 }
             }
-            .tap { log("Return API response to caller..") }
+            .onRight { log("Return API response to caller..") }
     }
 
     private suspend fun apiV(cs: CoroutineScope) = coroutineScope {
