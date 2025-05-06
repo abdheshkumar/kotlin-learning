@@ -19,7 +19,7 @@ dependencies {
     implementation("io.arrow-kt:arrow-core:2.1.1")
     implementation("com.google.code.gson:gson:2.10")
     testImplementation(kotlin("test"))
-    testImplementation("org.assertj:assertj-core:3.26.0")
+    testImplementation("org.assertj:assertj-core:3.27.3")
 }
 
 java {
