@@ -35,6 +35,7 @@ tasks.test {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "21"
+        freeCompilerArgs += "-Xcontext-parameters"
     }
 }
 
