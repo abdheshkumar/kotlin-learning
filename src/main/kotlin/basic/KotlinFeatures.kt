@@ -1,6 +1,7 @@
 package basic
 
 import java.math.BigDecimal
+import kotlin.contracts.contract
 
 /*
 Lambdas
@@ -222,6 +223,43 @@ fun main() {
 
     with(ctx) {
         methodWithContext() // ✅ no need to pass ctx explicitly
+    }
+
+    val conditionFullfilled = true
+    //immutable List
+    val newList = buildList {
+        add(1)
+        if (conditionFullfilled) {
+            add(2)
+        }
+    }
+
+
+    val newString = buildString {
+        append("Some")
+
+        if (conditionFullfilled) {
+            append(" string")
+        }
+    }
+
+    // immutable Set
+    val newSet = buildSet {
+        add(1)
+
+        if (conditionFullfilled) {
+            addAll(listOf(12))
+        }
+    }
+
+
+    // immutable Map
+    val newMap = buildMap {
+        put("key", "value")
+
+        if (conditionFullfilled) {
+            putAll(mapOf("12" to "value"))
+        }
     }
 }
 
