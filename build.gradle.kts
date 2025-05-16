@@ -16,7 +16,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.10.2")
-    implementation("io.arrow-kt:arrow-core:2.1.1")
+    implementation("io.arrow-kt:arrow-core:2.1.2")
     implementation("com.google.code.gson:gson:2.13.1")
     testImplementation(kotlin("test"))
     testImplementation("org.assertj:assertj-core:3.27.3")
