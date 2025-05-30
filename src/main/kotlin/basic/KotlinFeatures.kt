@@ -2,6 +2,7 @@ package basic
 
 import java.math.BigDecimal
 import kotlin.contracts.contract
+import kotlin.coroutines.cancellation.CancellationException
 
 /*
 Lambdas
@@ -183,6 +184,11 @@ fun methodWithContext() {
     val userName = env.getProperty("userName")
 }
 
+fun NonFatal(t: Throwable): Boolean =
+    when (t) {
+        is VirtualMachineError, is ThreadDeath, is InterruptedException, is LinkageError, is CancellationException -> false
+        else -> true
+    }
 
 fun main() {
     val result = highOrderFunction(2, 3) { x, y -> x + y }
@@ -261,6 +267,8 @@ fun main() {
             putAll(mapOf("12" to "value"))
         }
     }
+
+
 }
 
 /*
